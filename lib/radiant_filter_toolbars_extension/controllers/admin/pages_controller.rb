@@ -1,4 +1,4 @@
-module RadiantFilterToolbarExtension
+module RadiantFilterToolbarsExtension
   module Controllers
     module Admin
       module PagesController

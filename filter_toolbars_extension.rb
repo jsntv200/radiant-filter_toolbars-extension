@@ -4,6 +4,6 @@ class FilterToolbarsExtension < Radiant::Extension
   url         RadiantFilterToolbarsExtension::HOMEPAGE
 
   def activate
-    Admin::PagesController.send :include, RadiantFilterToolbarExtension::Controllers::Admin::PagesController
+    Admin::PagesController.send :include, RadiantFilterToolbarsExtension::Controllers::Admin::PagesController
   end
 end
