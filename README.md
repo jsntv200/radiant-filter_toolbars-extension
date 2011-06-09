@@ -20,3 +20,9 @@ Include the gem in your environment.rb :
 ```
 config.gem 'radiant-filter_toolbars-extension', :version => '~>1.0.0'
 ```
+
+Run the update task :
+
+```
+rake radiant:extensions:filter_toolbars:update
+```
