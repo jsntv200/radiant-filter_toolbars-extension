@@ -1,6 +1,6 @@
 #Filter Toolbars
 
-Adds a textile or markdown WYSIWYG filter to the admin textareas using Control.TextArea [http://livepipe.net/projects/control_textarea/] which was used in Frog CMS [http://www.madebyfrog.com/]
+Adds a textile or markdown WYSIWYG filter to the admin textareas using Control.TextArea [http://livepipe.net/control/textarea]
 
 If the Clipped asset manager extension is installed then the image button will launch the assets manager.
 
