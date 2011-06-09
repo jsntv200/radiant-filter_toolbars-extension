@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "radiant-filter_toolbars-extension/version"
+# require "radiant-filter_toolbars-extension/version"
 
 Gem::Specification.new do |s|
+  s.platform    = Gem::Platform::RUBY
   s.name        = "radiant-filter_toolbars-extension"
   s.version     = RadiantFilterToolbarsExtension::VERSION
-  s.platform    = Gem::Platform::RUBY
+  s.summary     = RadiantFilterToolbarsExtension::SUMMARY
+  s.description = RadiantFilterToolbarsExtension::DESCRIPTION
+  s.homepage    = RadiantFilterToolbarsExtension::HOMEPAGE
   s.authors     = ["Jason Taylor"]
   s.email       = ["jsntv200@gmail.com"]
-  s.homepage    = "https://github.com/jsntv200/radiant-filter_toolbars-extension"
-  s.summary     = %q{WYSIWYG Toolbar for Radiant CMS}
-  s.description = %q{Adds a WYSIWYG toolbar for the textile and markdown filters.}
 
   ignores = if File.exist?('.gitignore')
     File.read('.gitignore').split("\n").inject([]) {|a,p| a + Dir[p] }
