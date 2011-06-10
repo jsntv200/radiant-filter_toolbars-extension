@@ -1,4 +1,4 @@
-FilterToolBars.Textile = {
+FilterToolBars.Textile = Object.extend({
   bold: function() {
     FilterToolBars.textarea.wrapSelection('*', '*');
   },
@@ -8,46 +8,30 @@ FilterToolBars.Textile = {
   },
 
   h1: function() {
-    return heading('h1');
+    FilterToolBars.textarea.insertBeforeSelection('h1. ');
   },
 
   h2: function() {
-    return heading('h2');
+    FilterToolBars.textarea.insertBeforeSelection('h2. ');
   },
 
   h3: function() {
-    return heading('h3');
+    FilterToolBars.textarea.insertBeforeSelection('h3. ');
   },
 
   h4: function() {
-    return heading('h4');
+    FilterToolBars.textarea.insertBeforeSelection('h4. ');
   },
 
   ordered: function() {
-    FilterToolBars.textarea.injectEachSelectedLine(function(lines, line) {
-      if (line.match(/^\#+\s/)) {
-        lines.push(line.replace(/^(\#+\s)/, ''));
-      } else if (line.match(/^\*+\s/)) {
-        lines.push(line.replace(/\*/, '#'));
-      } else {
-        lines.push('# ' + line);
-      }
-
-      return lines;
+    FilterToolBars.textarea.collectFromEachSelectedLine( function(line) {
+      return event.shiftKey ? (line.match(/^\#{2,}/) ? line.replace(/^\#/,'') : line.replace(/^\#\s/,'')) : (line.match(/\#+\s/) ? '#' : '# ') + line;
     });
   },
 
   unordered: function() {
-    FilterToolBars.textarea.injectEachSelectedLine(function(lines,line){
-      if (line.match(/^\*+\s/)) {
-        lines.push(line.replace(/^(\*+\s)/, ''));
-      } else if (line.match(/^\#+\s/)) {
-        lines.push(line.replace(/\#/, '*'));
-      } else {
-        lines.push('* ' + line);
-      }
-
-      return lines;
+    FilterToolBars.textarea.collectFromEachSelectedLine( function(line) {
+      return event.shiftKey ? (line.match(/^\*{2,}/) ? line.replace(/^\*/,'') : line.replace(/^\*\s/,'')) : (line.match(/\*+\s/) ? '*' : '* ') + line;
     });
   },
 
@@ -60,39 +44,9 @@ FilterToolBars.Textile = {
     }
   },
 
-  image: function() {
-    return false;
-  },
-
   quote: function() {
-    FilterToolBars.textarea.injectEachSelectedLine(function(lines,line){
-      if (line.match(/(p|h[1-6]|bq)(>|=|<|<>)?\. /)) {
-        lines.push(line.replace(/(p|h[1-6]|bq)(>|=|<|<>)?\. /, 'bq$2. '));
-      } else if (line.match(/^\s*$/)) { // safari bug
-        lines.push(line);
-      } else {
-        lines.push('bq. ' + line);
-      }
-
-      return lines;
+    FilterToolBars.textarea.collectFromEachSelectedLine( function(line) {
+      return event.shiftKey ? line.replace(/^bq. /,'') : 'bq. ' + line;
     });
-  },
-
-  help: function() {
-    page_part = this.element.up('.page').readAttribute('data-caption');
-    loadFilterReference(page_part);
-  },
-
-  heading: function(tag) {
-    if (line.match(/(p|h[1-6]|bq)(>|=|<|<>)?\. /)) {
-      lines.push(line.replace(/(p|h[1-6]|bq)(>|=|<|<>)?\. /, tag + '$2. '));
-    } else if (line.match(/^\s*$/)) { // safari bug 
-      lines.push(line);
-    } else {
-      lines.push(tag + '. ' + line);
-    }
-
-    return lines;
   }
-}
-
+}, FilterToolBars.Filters);

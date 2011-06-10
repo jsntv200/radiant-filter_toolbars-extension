@@ -17,6 +17,16 @@ var FilterToolBars = {
   ]
 }
 
+FilterToolBars.Filters = {
+  image: function() {
+    return false;
+  },
+
+  help: function() {
+    page_part = FilterToolBars.textarea.element.up('.page').readAttribute('data-caption');
+    loadFilterReference(page_part);
+  }
+}
 
 FilterToolBars.AttachBehavior = Behavior.create({
   initialize: function(options) {

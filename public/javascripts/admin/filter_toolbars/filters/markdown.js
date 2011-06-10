@@ -1,4 +1,4 @@
-FilterToolBars.Markdown = {
+FilterToolBars.Markdown = Object.extend({
   bold: function() {
     FilterToolBars.textarea.wrapSelection('**', '**');
   },
@@ -26,20 +26,17 @@ FilterToolBars.Markdown = {
   ordered: function() {
     var i = 0;
 
-    FilterToolBars.textarea.injectEachSelectedLine(function(lines, line) {
-      if(!line.match(/^\s+$/)){
+    FilterToolBars.textarea.collectFromEachSelectedLine( function(line) {
+      if (!line.match(/^\s+$/)) {
         ++i;
-        lines.push((event.shiftKey ? line.replace(/^\d+\.\s/,'') : (line.match(/\d+\.\s/) ? '' : i + '. ') + line));
+        return event.shiftKey ? line.replace(/^\d+\.\s/,'') : (line.match(/\d+\.\s/) ? '' : i + '. ') + line;
       }
-
-      return lines;
     });
   },
 
   unordered: function() {
-    FilterToolBars.textarea.injectEachSelectedLine(function(lines,line){
-      lines.push((event.shiftKey ? (line.match(/^\*{2,}/) ? line.replace(/^\*/,'') : line.replace(/^\*\s/,'')) : (line.match(/\*+\s/) ? '*' : '* ') + line));
-      return lines;
+    FilterToolBars.textarea.collectFromEachSelectedLine( function(line) {
+      return event.shiftKey ? (line.match(/^\*{2,}/) ? line.replace(/^\*/,'') : line.replace(/^\*\s/,'')) : (line.match(/\*+\s/) ? '*' : '* ') + line;  
     });
   },
 
@@ -52,20 +49,9 @@ FilterToolBars.Markdown = {
     }
   },
 
-  image: function() {
-    return false;
-  },
-
   quote: function() {
-    FilterToolBars.textarea.injectEachSelectedLine(function(lines, line) {
-      lines.push((event.shiftKey ? line.replace(/^\> /,'') : '> ' + line));
-      return lines;
+    FilterToolBars.textarea.collectFromEachSelectedLine( function(line) {
+      return event.shiftKey ? line.replace(/^\> /,'') : '> ' + line;
     });
-  },
-
-  help: function() {
-    page_part = this.element.up('.page').readAttribute('data-caption');
-    loadFilterReference(page_part);
   }
-}
-
+}, FilterToolBars.Filters);
