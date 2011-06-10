@@ -7,10 +7,9 @@ If the Clipped asset manager extension is installed then the image button will l
 
 ## TODO
 
-- Currently in development so not actually working
-- Refactor the duplicated filter funtions
-- Update replaced functions to the new textarea.js
-- Add SmartyPants
+- Disable toolbar when selecting <none>
+- Refactor duplicated filter funtions
+- Implement SmartyPants
 
 
 ## Installation
