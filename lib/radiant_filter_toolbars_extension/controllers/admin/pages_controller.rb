@@ -9,10 +9,11 @@ module RadiantFilterToolbarsExtension
             private
 
             def filter_toolbar_assets
+              @javascripts << 'admin/filter_toolbars/control/livepipe'
               @javascripts << 'admin/filter_toolbars/control/textarea'
-              @javascripts << 'admin/filter_toolbars/control/textarea/textile'
-              @javascripts << 'admin/filter_toolbars/control/textarea/markdown'
               @javascripts << 'admin/filter_toolbars/filter_toolbars'
+              @javascripts << 'admin/filter_toolbars/filters/textile'
+              @javascripts << 'admin/filter_toolbars/filters/markdown'
               @stylesheets << 'admin/filter_toolbars'
             end
           end

@@ -5,6 +5,14 @@ Adds a textile or markdown WYSIWYG filter to the admin textareas using Control.T
 If the Clipped asset manager extension is installed then the image button will launch the assets manager.
 
 
+## TODO
+
+- Currently in development so not actually working
+- Refactor the duplicated filter funtions
+- Update replaced functions to the new textarea.js
+- Add SmartyPants
+
+
 ## Installation
 
 This has only been tested on Radiant v1.0.0 +

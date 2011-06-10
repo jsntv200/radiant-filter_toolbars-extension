@@ -1,41 +1,71 @@
-function set_filter_toolbar(select) {
-  var textarea = select.up('div').down('textarea').readAttribute('id');
-  var toolbar  = textarea + '_toolbar';
-  var filter   = select.getValue();
-        
-  if (Control.TextArea.ToolBar[filter] != null) {
-    remove();
-    
-    if (filter) {
-      var tb = new Control.TextArea.ToolBar[filter](textarea, {
-        assets:  typeof(Asset) != undefined ? true : false,
-        preview: true
-      });
-      
-      tb.toolbar.container.id = toolbar;
-      
-      // Allow for Papperclipped Asset Manager extension
-      if (typeof(Asset) != undefined) {
-        Event.addBehavior({ 'a.filter_image_button' : Asset.ShowBucket });
-      };
-    }    
-  } else {
-    remove();
-  }
-  
-  function remove() {
-    if ($(toolbar) != null) {
-      $(toolbar).remove();
-    }    
-  }
+var FilterToolBars = {
+  className: 'filter_toolbar',
+  textarea:  null,
+  buttons: [
+    { title: 'Bold', slug: 'bold' },
+    { title: 'Italics', slug: 'italics' },
+    { title: 'Heading 1', slug: 'h1' },
+    { title: 'Heading 2', slug: 'h2' },
+    { title: 'Heading 3', slug: 'h3' },
+    { title: 'Heading 4', slug: 'h4' },
+    { title: 'Ordered List', slug: 'ordered' },
+    { title: 'Unordered List', slug: 'unordered' },
+    { title: 'Link', slug: 'link' },
+    { title: 'Image', slug: 'image', attrs: {href:'#attach_asset'}},
+    { title: 'Block Quote', slug: 'quote' },
+    { title: 'Help', slug: 'help' }
+  ]
 }
 
-document.observe('dom:loaded', function() {  
-  $$('#pages select').each( function(el) {
-    el.observe('change', function(e) {
-      set_filter_toolbar(el);
-    })
-    
-    set_filter_toolbar(el);
-  });
+
+FilterToolBars.AttachBehavior = Behavior.create({
+  initialize: function(options) {
+    this.textarea = new Control.TextArea(this.element);
+    this.toolbar  = new Control.TextArea.ToolBar(this.textarea);
+    this.toolbar.container.id        = this.element.id + '_toolbar';
+    this.toolbar.container.className = FilterToolBars.className;
+    this.attach();
+  },
+
+  attach: function() {
+    FilterToolBars.buttons.each( function(button) {
+      var attributes = Object.extend({ className: 'button_' + button.slug, title: button.title }, button.attrs || {})
+      this.toolbar.addButton(button.title, function() { this.click(button.slug) }.bind(this), attributes);
+    }.bind(this));
+  },
+
+  click: function(tag) {
+    FilterToolBars.textarea = this.textarea;
+    FilterToolBars[this.filter()][tag]();
+  },
+
+  filter: function() {
+    return this.element.up('.part').down('select').getValue();
+  },
+
+  show: function() {
+    this.toolbar.show();
+  },
+
+  hide: function() {
+    this.toolbar.hide();
+  }
 });
+
+FilterToolBars.ChangeBehavior = Behavior.create({
+  initialize: function(options) {
+    this.change();
+    this.element.observe('change', this.change.bind(this));
+  },
+
+  change: function() {
+    FilterToolBars.filter = this.element.getValue()
+  }
+});
+
+Event.addBehavior({
+  '.part select'    : FilterToolBars.ChangeBehavior(),
+  '.part .textarea' : FilterToolBars.AttachBehavior(),
+  'a.button_image'  : Popup.TriggerBehavior()
+});
+
