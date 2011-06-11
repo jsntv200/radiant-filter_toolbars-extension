@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-# require "radiant-filter_toolbars-extension/version"
+require "radiant-filter_toolbars-extension"
 
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
