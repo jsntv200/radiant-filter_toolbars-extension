@@ -1,4 +1,4 @@
-#Filter Toolbars
+# Filter Toolbars
 
 Adds a textile or markdown WYSIWYG filter to the admin textareas using Control.TextArea [http://livepipe.net/control/textarea]
 
@@ -7,7 +7,6 @@ If the Clipped asset manager extension is installed then the image button will l
 
 ## TODO
 
-- Disable toolbar when selecting <none>
 - Refactor duplicated filter funtions
 - Implement SmartyPants
 
