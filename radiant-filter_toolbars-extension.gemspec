@@ -3,14 +3,14 @@ $:.push File.expand_path("../lib", __FILE__)
 require "radiant-filter_toolbars-extension"
 
 Gem::Specification.new do |s|
-  s.platform    = Gem::Platform::RUBY
   s.name        = "radiant-filter_toolbars-extension"
   s.version     = RadiantFilterToolbarsExtension::VERSION
+  s.platform    = Gem::Platform::RUBY
+  s.authors     = RadiantFilterToolbarsExtension::AUTHORS
+  s.email       = RadiantFilterToolbarsExtension::EMAIL
+  s.homepage    = RadiantFilterToolbarsExtension::URL
   s.summary     = RadiantFilterToolbarsExtension::SUMMARY
   s.description = RadiantFilterToolbarsExtension::DESCRIPTION
-  s.homepage    = RadiantFilterToolbarsExtension::HOMEPAGE
-  s.authors     = ["Jason Taylor"]
-  s.email       = ["jsntv200@gmail.com"]
 
   ignores = if File.exist?('.gitignore')
     File.read('.gitignore').split("\n").inject([]) {|a,p| a + Dir[p] }

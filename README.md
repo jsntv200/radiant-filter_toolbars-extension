@@ -7,7 +7,7 @@ If the Clipped asset manager extension is installed then the image button will l
 
 ## TODO
 
-- Refactor duplicated filter funtions
+- Refactor duplicated filter functions
 - Implement SmartyPants
 
 
@@ -24,7 +24,7 @@ gem install radiant-filter_toolbars-extension
 Include the gem in your environment.rb :
 
 ```
-config.gem 'radiant-filter_toolbars-extension', :version => '~>1.0.0'
+config.gem 'radiant-filter_toolbars-extension', :version => '~> 1.0.1'
 ```
 
 Run the update task :
