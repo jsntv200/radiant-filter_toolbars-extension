@@ -121,6 +121,6 @@ FilterToolBars.SelectBehavior = Behavior.create({
 Event.addBehavior({
   '.part textarea' : FilterToolBars.AttachBehavior(),
   '.tabs .tab'     : FilterToolBars.TabBehavior(),
-  '.part select'   : FilterToolBars.SelectBehavior()
+  '.part select'   : FilterToolBars.SelectBehavior(),
+  '.button_image'  : Popup.TriggerBehavior()
 });
-
