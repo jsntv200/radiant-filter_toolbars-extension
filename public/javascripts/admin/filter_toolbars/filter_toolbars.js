@@ -20,6 +20,12 @@ var FilterToolBars = {
 
   update_filter: function(filter) {
     this.filter = filter || null;
+
+    // Just use Markdown for Smartypants
+    if (this.filter == "SmartyPants") {
+      this.filter = "Markdown";
+    }
+
     this.filter == null ? this.hide() : this.show();
   },
 
