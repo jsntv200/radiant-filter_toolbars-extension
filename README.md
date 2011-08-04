@@ -24,7 +24,7 @@ gem install radiant-filter_toolbars-extension
 Include the gem in your environment.rb :
 
 ```
-config.gem 'radiant-filter_toolbars-extension', :version => '~> 1.0.1'
+config.gem 'radiant-filter_toolbars-extension', :version => '~> 1.0.2'
 ```
 
 Run the update task :
