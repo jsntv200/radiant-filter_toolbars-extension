@@ -15,20 +15,20 @@ If the Clipped asset manager extension is installed then the image button will l
 
 This has only been tested on Radiant v1.0.0 +
 
-Install as a gem :
+Add the gem to your Gemfile :
 
 ```
-gem install radiant-filter_toolbars-extension
+gem "radiant-filter_toolbars-extension", "~> 1.0.3"
 ```
 
-Include the gem in your environment.rb :
+Update your bundle :
 
 ```
-config.gem 'radiant-filter_toolbars-extension', :version => '~> 1.0.2'
+$ bundle install
 ```
 
 Run the update task :
 
 ```
-rake radiant:extensions:filter_toolbars:update
+rake radiant:extensions:update_all
 ```

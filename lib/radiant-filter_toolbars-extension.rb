@@ -1,5 +1,5 @@
 module RadiantFilterToolbarsExtension
-  VERSION     = '1.0.2'
+  VERSION     = '1.0.3'
   SUMMARY     = %q{WYSIWYG Toolbar for Radiant CMS}
   DESCRIPTION = %q{Adds a WYSIWYG toolbar for the textile and markdown filters.}
   URL         = "https://github.com/jsntv200/radiant-filter_toolbars-extension"
