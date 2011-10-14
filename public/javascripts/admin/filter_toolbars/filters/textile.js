@@ -37,10 +37,10 @@ FilterToolBars.Textile = Object.extend({
 
   link: function() {
     var selection = FilterToolBars.textarea.getSelection() || 'Link Text',
-        response  = prompt('Enter Full URL: (http:// or mailto:)', '');
+        response  = prompt('Enter Full URL: (http://, mailto: or /local/path)', '');
 
-    if (response && response.match(/^((f|ht)tps?|mailto)/)) {
-      FilterToolBars.textarea.replaceSelection('"' + selection + '":' + response.replace(/^(?!(f|ht)tps?:\/\/)/, 'http://'));
+    if (response && response.match(/^((f|ht)tps?|mailto|\/)/)) {
+      FilterToolBars.textarea.replaceSelection('"' + selection + '":' + response);
     }
   },
 

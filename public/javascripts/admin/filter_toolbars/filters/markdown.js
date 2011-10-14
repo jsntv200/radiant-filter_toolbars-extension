@@ -41,11 +41,11 @@ FilterToolBars.Markdown = Object.extend({
   },
 
   link: function() {
-    var selection = this.getSelection() || 'Link Text',
-        response  = prompt('Enter Full URL: (http:// or mailto:)', '');
+    var selection = FilterToolBars.textarea.getSelection() || 'Link Text',
+        response  = prompt('Enter Full URL: (http://, mailto: or /local/path)', '');
 
-    if (response && response.match(/^((f|ht)tps?|mailto)/)) {
-      FilterToolBars.textarea.replaceSelection('[' + selection + '](' + response.replace(/^(?!(f|ht)tps?:\/\/)/, 'http://') + ')');
+    if (response && response.match(/^((f|ht)tps?|mailto|\/)/)) {
+      FilterToolBars.textarea.replaceSelection('[' + selection + '](' + response + ')');
     }
   },
 
